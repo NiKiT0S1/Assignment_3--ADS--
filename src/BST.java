@@ -1,23 +1,49 @@
+/**
+ * BST (Binary Search Tree) is a data structure that maintains a set of keys in a tree structure.
+ * It allows efficient insertion, deletion, and retrieval operations.
+ * This implementation supports generic key-value pairs.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BST<K extends Comparable<K>, V> {
-    private Node root;
+    private Node root; // Root node of the binary search tree
 
+    // Node represents a node in the binary search tree containing a key-value pair.
     private class Node {
-        private K key;
-        private V val;
-        private Node left, right;
+        private K key; // Key of the node
+        private V val; // Value associated with the key
+        private Node left, right; // References to the left and right child nodes
+
+        /**
+         * Constructor to create a new Node with the given key and value.
+         * @param key The key of the node
+         * @param val The value associated with the key
+         */
         public Node(K key, V val) {
             this.key = key;
             this.val = val;
         }
     }
 
+    /**
+     * Inserts a key-value pair into the binary search tree.
+     * If the key already exists, updates the corresponding value.
+     * @param key The key to insert
+     * @param val The value associated with the key
+     */
     public void put(K key, V val) {
         root = put(root, key, val);
     }
 
+    /**
+     * Recursive helper method to insert a key-value pair into the binary search tree.
+     * @param node The root of the subtree
+     * @param key The key to insert
+     * @param val The value associated with the key
+     * @return The root of the updated subtree
+     */
     private Node put(Node node, K key, V val) {
         if (node == null) {
             return new Node(key, val);
@@ -35,10 +61,21 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
 
+    /**
+     * Retrieves the value associated with the given key from the binary search tree.
+     * @param key The key whose value is to be retrieved
+     * @return The value associated with the key, or null if the key is not found
+     */
     public V get(K key) {
         return get(root, key);
     }
 
+    /**
+     * Recursive helper method to retrieve the value associated with the given key from the binary search tree.
+     * @param node The root of the subtree
+     * @param key The key whose value is to be retrieved
+     * @return The value associated with the key, or null if the key is not found
+     */
     private V get(Node node, K key) {
         if (node == null) {
             return null;
@@ -55,10 +92,20 @@ public class BST<K extends Comparable<K>, V> {
         }
     }
 
+    /**
+     * Deletes the key-value pair associated with the given key from the binary search tree.
+     * @param key The key to delete
+     */
     public void delete(K key) {
         root = delete(root, key);
     }
 
+    /**
+     * Recursive helper method to delete the key-value pair associated with the given key from the binary search tree.
+     * @param node The root of the subtree
+     * @param key The key to delete
+     * @return The root of the updated subtree
+     */
     private Node delete(Node node, K key) {
         if (node == null) {
             return null;
@@ -85,6 +132,11 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
 
+    /**
+     * Finds the minimum key in the binary search tree.
+     * @param node The root of the subtree
+     * @return The node with the minimum key
+     */
     private Node min(Node node) {
         if (node.left == null) {
             return node;
@@ -94,6 +146,11 @@ public class BST<K extends Comparable<K>, V> {
         }
     }
 
+    /**
+     * Deletes the node with the minimum key from the binary search tree.
+     * @param node The root of the subtree
+     * @return The root of the updated subtree
+     */
     private Node deleteMin(Node node) {
         if (node.left == null) {
             return node.right;
@@ -102,12 +159,21 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
 
+    /**
+     * Performs an in-order traversal of the binary search tree and returns the keys in sorted order.
+     * @return An iterable containing the keys in sorted order
+     */
     public Iterable<K> iterator() {
         List<K> keys = new ArrayList<>();
         inOrder(root, keys);
         return keys;
     }
 
+    /**
+     * Recursive helper method to perform an in-order traversal of the binary search tree.
+     * @param node The root of the subtree
+     * @param keys The list to store the keys
+     */
     private void inOrder(Node node, List<K> keys) {
         if (node == null) {
             return;
