@@ -13,11 +13,19 @@ MyHashTable - a class that implements a hash table data structure. It uses an ar
 
 ### Usage Example:
 ```java
+// Creating an instance of MyHashTable with default size
 MyHashTable<MyTestingClass, String> hashTable = new MyHashTable<>();
+
+// Adding a key-value pair to the hash table
 MyTestingClass key = new MyTestingClass(1, "Data");
 hashTable.put(key, "Value");
+
+// Retrieving the value associated with a key
 String value = hashTable.get(key); // Returns "Value"
+
+// Removing a key-value pair from the hash table
 hashTable.remove(key); // Removes the key-value pair
+```
 
 
 ## MyTestingClass
@@ -32,9 +40,17 @@ MyTestingClass - a class used for testing MyHashTable. It contains a custom hash
 
 ### Usage Example:
 ```java
+// Creating an instance of MyTestingClass
 MyTestingClass testObject = new MyTestingClass(1, "Test Data");
+
+// Getting the identifier and data associated with the object
 int id = testObject.getId(); // Returns 1
 String data = testObject.getData(); // Returns "Test Data"
+
+// Setting a new identifier and data for the object
+testObject.setId(2);
+testObject.setData("New Test Data");
+```
 
 
 ## BST
@@ -49,11 +65,24 @@ BST (Binary Search Tree) - a class that implements a binary search tree data str
 
 ### Usage Example:
 ```java
+// Creating an instance of BST
 BST<Integer, String> binaryTree = new BST<>();
+
+// Adding elements to the binary search tree
 binaryTree.put(5, "Root");
 binaryTree.put(3, "Left Child");
+
+// Retrieving the value associated with a key
 String rootValue = binaryTree.get(5); // Returns "Root"
+
+// Removing an element from the binary search tree
 binaryTree.delete(5); // Removes the element with key 5
+
+// Iterating over the binary search tree
+for (Integer key : binaryTree.iterator()) {
+    System.out.println("Key: " + key + ", Value: " + binaryTree.get(key));
+}
+```
 
 
 ## Main
